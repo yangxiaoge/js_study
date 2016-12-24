@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+
+    <script>
+        function toBox() {
+            var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+            arr.slice(0, 3); // 从索引0开始，到索引3结束，但不包括索引3: ['A', 'B', 'C']
+            arr.slice(3); // 从索引3开始到结束: ['D', 'E', 'F', 'G']
+            alert(arr.slice(0, 3));
+            console.log(arr.slice(0, 3));
+            //如果不给slice()传递任何参数，它就会从头到尾截取所有元素。利用这一点，我们可以很容易地复制一个Array：
+            var copy = arr.slice();
+            alert(copy);
+
+            //http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449921138898cdeb7fc2214dc08c6c67827758cd2f000
+            //push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：
+            var arr = [1, 2];
+            arr.push('A', 'B'); // 返回Array新的
+            console.log(arr);
+            arr.pop(); // pop()返回'B'
+            console.log(arr);
+            //如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉：
+            var arr = [1, 2];
+            arr.unshift('A', 'B'); // 返回Array新的
+            console.log(arr); // ['A', 'B', 1, 2]
+            arr.shift(); // 'A'
+            console.log(arr); // ['B', 1, 2]
+
+            //练习：在新生欢迎会上，你已经拿到了新同学的名单，请排序后显示：欢迎XXX，XXX，XXX和XXX同学！：
+            var arr = ['小明', '小红', '大军', '阿黄'];
+            var last = arr[arr.length - 1];
+            arr.pop(); //删除最后一个元素
+            var text = arr.join(',');
+            alert('欢迎' + text + '和' + last + '同学');
+        }
+    </script>
+</head>
+
+<body>
+    <a href="http://yangxiaoge.coding.me">羊羊羊的博客</a>
+    <a href="http://zhuzhuyang.github.io">珠珠的博客</a>
+
+    <input type="button" name="11" value="开始" onclick="toBox()">
+    <div id="div111">
+        咿呀咿呀呦
+    </div>
+</body>
+
+</html>
