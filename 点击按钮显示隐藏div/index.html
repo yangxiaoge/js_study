@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>div显示与隐藏</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id='linkId' href="css/style.css" rel="stylesheet">
+
+    <script>
+        function hideDiv() {
+            var divId = document.getElementById('div11');
+            // 如果当前div是展示中
+            if (divId.style.display == 'block') {
+                divId.style.display = 'none';
+            } else {
+                divId.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" name="111" value="皮肤1" onclick="hideDiv()">
+    <br>
+    <br>
+    <div id="div11">
+        你来隐藏我呀！
+    </div>
+</body>
+
+</html>

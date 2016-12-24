@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <script>
+        function toGreen() {
+            var divId = document.getElementById('div222');
+            divId.style.width = '300px'
+            divId.style.height = '300px'
+            divId.style.background = 'green'
+        }
+
+        function toRed() {
+            var divId = document.getElementById('div222');
+            divId.style.width = '200px'
+            divId.style.height = '200px'
+            divId.style.background = 'red'
+        }
+    </script>
+</head>
+
+<body>
+    <h1>demo</h1>
+    <div class="box red">box red</div>
+    <div class="box green">box green</div>
+    <div class="box yellow">box yellow</div>
+
+    <!-- document.getElementById 兼容性， 如果直接用 div1， 那么火狐可能不支持-->
+    <input type="checkbox" name="羊羊羊" value="男" onmouseover="document.getElementById('div1').style.display='block'" onmouseout="div1.style.display='none'">
+    <div id="div1">
+        为了您的帐号安全，请不要在公共场所勾选！
+    </div>
+
+    <div id="div222" onmouseover="toGreen()" onmouseout="toRed()">
+        hehe
+    </div>
+</body>
+
+</html>

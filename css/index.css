@@ -1,0 +1,38 @@
+body {
+    background: gray;
+    color: white;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.red {
+    background: red;
+}
+
+.green {
+    background: green;
+}
+
+.yellow {
+    background: yellow;
+}
+
+
+/*div1的样式*/
+
+#div1 {
+    color: orangered;
+    display: none;
+}
+
+#div222 {
+    color: blue;
+    background: red;
+    width: 200px;
+    height: 200px;
+    display: block;
+}

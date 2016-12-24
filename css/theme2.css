@@ -1,0 +1,10 @@
+body {
+    background: gold;
+}
+
+input {
+    color: red;
+    background: orchid;
+    width: 80px;
+    height: 80px;
+}

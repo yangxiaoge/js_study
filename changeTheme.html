@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>切换皮肤</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id='linkId' href="css/style_for_changetheme.css" rel="stylesheet">
+
+    <script>
+        function theme1() {
+            var btnId = document.getElementById('linkId');
+            btnId.href = 'css/theme1.css';
+        }
+
+        function theme2() {
+            var btnId = document.getElementById('linkId');
+            btnId.href = 'css/theme2.css';
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" name="111" value="皮肤1" onclick="theme1()">
+    <input type="button" name="222" value="皮肤2" onclick="theme2()">
+</body>
+
+</html>
