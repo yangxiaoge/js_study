@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>全选，全不选，反选</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <script>
+        window.onload = function() {
+            //获取 根节点div1对象
+            var oDiv = document.getElementById('div1');
+            // 获取所以checkbox
+            var divS = oDiv.getElementsByTagName('input');
+
+            //全选
+            var btn1 = document.getElementById('button1');
+            //全不选
+            var btn2 = document.getElementById('button2');
+            //反选
+            var btn3 = document.getElementById('button3');
+            btn1.onclick = function() {
+                for (var i = 0; i < divS.length; i++) {
+                    divS[i].checked = true;
+                }
+            }
+            btn2.onclick = function() {
+                for (var i = 0; i < divS.length; i++) {
+                    divS[i].checked = false;
+                }
+            }
+            btn3.onclick = function() {
+                for (var i = 0; i < divS.length; i++) {
+                    divS[i].checked = !divS[i].checked; //取反
+                }
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <input id="button1" type="button" value="全选">
+    <input id="button2" type="button" value="全不选">
+    <input id="button3" type="button" value="反选">
+    <div id="div1">
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+        <input type="checkbox">
+        <br>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>选项卡</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <script>
+        window.onload = function() {
+            //获取 根节点div1对象
+            var oDiv = document.getElementById('div1');
+            var btnS = oDiv.getElementsByTagName('input');
+            var divS = oDiv.getElementsByTagName('div');
+            //对每一个按钮进行点击事件监听
+            for (var i = 0; i < btnS.length; i++) {
+                btnS[i].index = i; //为buttton临时增加index属性（js中可以（js很强大），html中index不是系统的关键字所以不行。）
+                btnS[i].onclick = function() {
+                    //this含义：当前发生事件的元素
+                    //alert(this.value);
+
+                    //清除所有选择
+                    for (var i = 0; i < btnS.length; i++) {
+                        /*4个tab全都变成inactive*/
+                        btnS[i].className = '';
+                    }
+                    //选中当前tab
+                    this.className = 'active';
+
+                    for (var i = 0; i < divS.length; i++) {
+                        divS[i].style.display = 'none';
+                    }
+
+                    // alert(this.index);
+                    divS[this.index].style.display = 'block';
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <input class="active" type="button" name="11" value="王">
+        <input type="button" name="22" value="大">
+        <input type="button" name="33" value="胖">
+        <input type="button" name="44" value="子">
+        <br>
+        <div style="display: block">111111</div>
+        <div>222222</div>
+        <div>333333</div>
+        <div>444444</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+#div1 .active {
+    /*按钮active的颜色*/
+    background: yellow;
+}
+
+#div1 input {
+    width: 44.5px;
+}
+
+#div1 div {
+    display: none;
+    width: 200px;
+    height: 200px;
+    background: cyan;
+    border: 1px solid blue;
+}
