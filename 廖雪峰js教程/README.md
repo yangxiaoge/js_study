@@ -64,3 +64,153 @@ function foo(a, b, c) {
 }
 要把中间的参数b变为“可选”参数，就只能通过arguments判断，然后重新调整参数并赋值。
 ```
+- 高阶函数, 高阶函数英文叫Higher-order function
+```   //练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
+        function string2int(s) {
+            return s.split('').map(strNum => strNum * 1).reduce((x, y) => x * 10 + y)
+        }
+        string2int('12345')
+```
+
+- 细细理解 map(), reduce(), filter()的区别
+
+- sort
+```
+如果不知道sort()方法的默认排序规则，直接对数字排序，绝对栽进坑里！
+幸运的是，sort()方法也是一个高阶函数，它还可以接收一个比较函数来实现自定义的排序。
+var arr = [10, 20, 1, 2];
+arr.sort(function (x, y) {
+    if (x < y) {
+        return -1;
+    }
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+}); // [1, 2, 10, 20]
+
+var arr = ['Google', 'apple', 'Microsoft'];
+arr.sort(function (s1, s2) {
+    x1 = s1.toUpperCase();
+    x2 = s2.toUpperCase();
+    if (x1 < x2) {
+        return -1;
+    }
+    if (x1 > x2) {
+        return 1;
+    }
+    return 0;
+}); // ['apple', 'Google', 'Microsoft']
+
+最后友情提示，sort()方法会直接对Array进行修改，它返回的结果仍是当前Array：
+```
+
+- 闭包（Closure）
+```
+我们来实现一个对Array的求和。通常情况下，求和的函数是这样定义的：
+function sum(arr) {
+    return arr.reduce(function (x, y) {
+        return x + y;
+    });
+}
+sum([1, 2, 3, 4, 5]); // 15
+
+如果不需要立刻求和，而是在后面的代码中，根据需要再计算怎么办？可以不返回求和的结果，而是返回求和的函数！
+function lazy_sum(arr) {
+    var sum = function () {
+        return arr.reduce(function (x, y) {
+            return x + y;
+        });
+    }
+    return sum;
+}
+
+当我们调用lazy_sum()时，返回的并不是求和结果，而是求和函数：
+var f = lazy_sum([1, 2, 3, 4, 5]); // function sum()
+调用函数f时，才真正计算求和的结果：
+f(); // 15
+
+在这个例子中，我们在函数lazy_sum中又定义了函数sum，并且，内部函数sum可以引用外部函数lazy_sum的参数和局部变量，
+当lazy_sum返回函数sum时，相关参数和变量都保存在返回的函数中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。
+```
+- 箭头函数
+ES6标准新增了一种新的函数：Arrow Function（箭头函数）。
+```
+x => x * x
+
+上面的箭头函数相当于：
+
+function (x) {
+    return x * x;
+}
+
+箭头函数有两种格式，一种像上面的，只包含一个表达式，连{ ... }和return都省略掉了。还有一种可以包含多条语句，这时候就不能省略{ ... }和return：
+x => {
+    if (x > 0) {
+        return x * x;
+    }
+    else {
+        return - x * x;
+    }
+}
+```
+
+- generator
+```
+用generator改写如下：
+
+function* fib(max) {
+    var
+        t,
+        a = 0,
+        b = 1,
+        n = 1;
+    while (n < max) {
+        yield a;
+        t = a + b;
+        a = b;
+        b = t;
+        n ++;
+    }
+    return a;
+}
+直接调用试试：
+
+fib(5); // fib {[[GeneratorStatus]]: "suspended", [[GeneratorReceiver]]: Window}
+直接调用一个generator和调用函数不一样，fib(5)仅仅是创建了一个generator对象，还没有去执行它。
+
+调用generator对象有两个方法，一是不断地调用generator对象的next()方法：
+
+var f = fib(5);
+f.next(); // {value: 0, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 2, done: false}
+f.next(); // {value: 3, done: true}
+next()方法会执行generator的代码，然后，每次遇到yield x;就返回一个对象{value: x, done: true/false}，然后“暂停”。返回的value就是yield的返回值，done表示这个generator是否已经执行结束了。如果done为true，则value就是return的返回值。
+
+当执行到done为true时，这个generator对象就已经全部执行完毕，不要再继续调用next()了。
+```
+
+- 标准对象
+```
+总结一下，有这么几条规则需要遵守：
+
+不要使用new Number()、new Boolean()、new String()创建包装对象；
+
+用parseInt()或parseFloat()来转换任意类型到number；
+
+用String()来转换任意类型到string，或者直接调用某个对象的toString()方法；
+
+通常不必把任意类型转换为boolean再判断，因为可以直接写if (myVar) {...}；
+
+typeof操作符可以判断出number、boolean、string、function和undefined；
+
+判断Array要使用Array.isArray(arr)；
+
+判断null请使用myVar === null；
+
+判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
+
+函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
+```
